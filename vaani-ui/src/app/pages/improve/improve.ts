@@ -3,11 +3,11 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-improve',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './improve.html'
 })
 export class ImproveComponent {
@@ -45,5 +45,9 @@ export class ImproveComponent {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
+  }
+
+  goToHistory() {
+    this.router.navigate(['/history']);
   }
 }
