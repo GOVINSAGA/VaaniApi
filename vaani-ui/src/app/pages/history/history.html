@@ -1,0 +1,24 @@
+<h2>History</h2>
+
+<div *ngIf="loading">Loading...</div>
+
+<div *ngIf="!loading && history.length === 0">
+  <p>No history found</p>
+</div>
+
+<div *ngFor="let item of history" style="margin-bottom: 20px; border-bottom: 1px solid #ccc;">
+
+  <p><b>Original:</b> {{ item.originalText }}</p>
+
+  <p><b>Improved:</b> {{ item.improvedText }}</p>
+
+  <p><b>Explanation:</b> {{ item.explanation }}</p>
+
+  <p><b>Tone:</b> {{ item.tone }}</p>
+
+  <small>{{ item.createdAt }}</small>
+
+</div>
+
+<button (click)="logout()">Logout</button>
+<button routerLink="/improve">Back</button>

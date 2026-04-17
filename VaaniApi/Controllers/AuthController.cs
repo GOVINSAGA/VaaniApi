@@ -13,9 +13,12 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    public IActionResult Register(string email, string password)
+    public IActionResult Register([FromBody] AuthRequestDTO request)
     {
-        var token = _authService.Register(email, password);
+        if (request == null || string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+            return BadRequest("Invalid data");
+
+        var token = _authService.Register(request.Email, request.Password);
         return Ok(new { token });
     }
 
