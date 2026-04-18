@@ -21,7 +21,7 @@ namespace VaaniApi
                     policy =>
                     {
                         policy.WithOrigins("http://localhost:4200",
-                          "https://your-app-name.vercel.app")
+                          "https://vaani-ui.vercel.app")
                               .AllowAnyHeader()
                               .AllowAnyMethod();
                     });
@@ -91,6 +91,7 @@ namespace VaaniApi
 
             // Configure the HTTP request pipeline.
             app.UsePathBase("/api");
+
             app.UseSwagger(c =>
             {
                 c.RouteTemplate = "swagger/{documentName}/swagger.json";
@@ -102,15 +103,12 @@ namespace VaaniApi
                 c.RoutePrefix = "swagger";
             });
 
-            app.UseSwaggerUI();
-
             app.UseHttpsRedirection();
 
-            app.UseCors("AllowAngular");
+            app.UseCors("AllowAngular");   // ✅ BEFORE auth
 
             app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 
