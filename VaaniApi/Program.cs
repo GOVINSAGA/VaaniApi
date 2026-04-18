@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -28,7 +29,7 @@ namespace VaaniApi
 
             // Add services to the container.
             builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=vaani.db"));
+            options.UseSqlite("Data Source=/home/ubuntu/VaaniApi/VaaniApi/vaani.db"));
 
             builder.Services.AddHttpClient<AiService>();
             builder.Services.AddScoped<AuthService>();
