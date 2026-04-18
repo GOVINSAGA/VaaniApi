@@ -5,7 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using VaaniApi.Data;
-using Microsoft.OpenApi.Models;
+
 namespace VaaniApi
 {
     public class Program
@@ -28,8 +28,8 @@ namespace VaaniApi
 
             // Add services to the container.
             builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-          
+    options.UseSqlite("Data Source=vaani.db"));
+
             builder.Services.AddHttpClient<AiService>();
             builder.Services.AddScoped<AuthService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
