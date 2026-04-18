@@ -90,8 +90,18 @@ namespace VaaniApi
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+            app.UsePathBase("/api");
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "swagger/{documentName}/swagger.json";
+            });
 
-            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/api/swagger/v1/swagger.json", "Vaani API V1");
+                c.RoutePrefix = "swagger";
+            });
+
             app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
