@@ -49,6 +49,7 @@ Return ONLY valid JSON. No extra text:
 
         var request = new HttpRequestMessage(HttpMethod.Post, url);
         request.Headers.Add("Authorization", $"Bearer {_apiKey}");
+        Console.WriteLine("API KEY: " + _apiKey);
         request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
         var response = await _httpClient.SendAsync(request);
@@ -57,17 +58,32 @@ Return ONLY valid JSON. No extra text:
         Console.WriteLine("RAW NVIDIA RESPONSE:");
         Console.WriteLine(result);
 
+        if (!response.IsSuccessStatusCode)
+        {
+            return new ImproveResponseDTO
+            {
+                ImprovedText = "",
+                Explanation = "NVIDIA API ERROR: " + result
+            };
+        }
+
         dynamic parsed = JsonConvert.DeserializeObject(result);
 
         try
         {
-            string content = parsed.choices[0].message.content.ToString();
+            var content = parsed.choices[0].message.content.ToString();
 
-            return JsonConvert.DeserializeObject<ImproveResponseDTO>(content);
+            var cleaned = JsonConvert.DeserializeObject<ImproveResponseDTO>(content);
+
+            return cleaned;
         }
         catch
         {
-            throw new Exception("AI response parsing failed: " + result);
+            return new ImproveResponseDTO
+            {
+                ImprovedText = "",
+                Explanation = "Parsing failed: " + result
+            };
         }
     }
 }
