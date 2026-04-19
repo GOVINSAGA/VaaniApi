@@ -1,9 +1,50 @@
-<form [formGroup]="form" (ngSubmit)="register()">
+<div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      Create a new account
+    </h2>
+    <p class="mt-2 text-center text-sm text-gray-600">
+      Or
+      <a routerLink="/login" class="font-medium text-indigo-600 hover:text-indigo-500">
+        log in to your existing account
+      </a>
+    </p>
+  </div>
 
-  <input formControlName="email" placeholder="Email" />
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-gray-100">
 
-  <input formControlName="password" type="password" placeholder="Password" />
+      <form [formGroup]="form" (ngSubmit)="register()" class="space-y-6">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">
+            Email address
+          </label>
+          <div class="mt-1">
+            <input id="email" formControlName="email" type="email" autocomplete="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="you@example.com">
+          </div>
+          <p *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="mt-2 text-sm text-red-600" id="email-error">
+            Email is required and must be valid.
+          </p>
+        </div>
 
-  <button type="submit">Register</button>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <div class="mt-1">
+            <input id="password" formControlName="password" type="password" autocomplete="new-password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="••••••••">
+          </div>
+          <p *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="mt-2 text-sm text-red-600" id="password-error">
+            Password is required.
+          </p>
+        </div>
 
-</form>
+        <div>
+          <button type="submit" [disabled]="form.invalid" [class.opacity-50]="form.invalid" [class.cursor-not-allowed]="form.invalid" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
