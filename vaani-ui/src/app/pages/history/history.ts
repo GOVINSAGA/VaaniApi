@@ -37,4 +37,8 @@ export class HistoryComponent implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }
+
+  goBack() {
+    this.router.navigate(['/improve']);
+  }
 }
