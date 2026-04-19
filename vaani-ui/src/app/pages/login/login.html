@@ -1,5 +1,9 @@
 <h2>Login</h2>
 
+<div *ngIf="errorMessage" style="color: red; background-color: #ffe6e6; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+  {{ errorMessage }}
+</div>
+
 <form [formGroup]="loginForm" (ngSubmit)="login()">
 
   <input formControlName="email" placeholder="Email" />
@@ -13,5 +17,4 @@
   </div>
 
   <button type="submit">Login</button>
-
 </form>
