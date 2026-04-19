@@ -19,6 +19,9 @@ public class AuthService
 
     public string Register(string email, string password)
     {
+        if (_context.Users.Any(u => u.Email == email))
+            throw new Exception("User already exists");
+
         var hashed = BCrypt.Net.BCrypt.HashPassword(password);
 
         var user = new User
