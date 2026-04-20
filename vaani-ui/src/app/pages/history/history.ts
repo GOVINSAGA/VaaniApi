@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { Router, RouterModule } from '@angular/router'; 
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule, RouterModule, DatePipe],
+  imports: [CommonModule, RouterModule],
   templateUrl: './history.html'
 })
 export class HistoryComponent implements OnInit {
