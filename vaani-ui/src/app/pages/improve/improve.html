@@ -1,33 +1,87 @@
-<h2>Improve Text</h2>
+<div class="min-h-screen bg-gray-50 pb-12">
+  <nav class="bg-white shadow-sm mb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <span class="text-2xl font-bold text-indigo-600">Vaani</span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button (click)="goToHistory()" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
+            History
+          </button>
+          <button (click)="logout()" class="text-gray-600 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<form [formGroup]="improveForm" (ngSubmit)="improve()">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white shadow sm:rounded-lg mb-8 border border-gray-100">
+      <div class="px-4 py-5 sm:p-6">
+        <h2 class="text-2xl leading-6 font-bold text-gray-900 mb-6">Improve Text</h2>
 
-  <textarea formControlName="text" placeholder="Enter your text"></textarea>
+        <form [formGroup]="improveForm" (ngSubmit)="improve()" class="space-y-6">
+          <div>
+            <label for="text" class="block text-sm font-medium text-gray-700">
+              Your Text
+            </label>
+            <div class="mt-1">
+              <textarea id="text" formControlName="text" rows="5" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-3 border" placeholder="Paste the text you want to improve here..."></textarea>
+            </div>
+            <p *ngIf="improveForm.get('text')?.touched && improveForm.get('text')?.invalid" class="mt-2 text-sm text-red-600">
+              Text is required (min 3 chars).
+            </p>
+          </div>
 
-  <div *ngIf="improveForm.get('text')?.touched && improveForm.get('text')?.invalid">
-    <small>Text is required (min 3 chars)</small>
+          <div class="w-1/2 sm:w-1/3">
+            <label for="tone" class="block text-sm font-medium text-gray-700">
+              Target Tone
+            </label>
+            <select id="tone" formControlName="tone" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md border">
+              <option value="professional">Professional</option>
+              <option value="casual">Casual</option>
+            </select>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <button type="submit" [disabled]="improveForm.invalid || loading" [class.opacity-50]="improveForm.invalid || loading" [class.cursor-not-allowed]="improveForm.invalid || loading" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+              <span *ngIf="!loading">Improve Text</span>
+              <span *ngIf="loading" class="flex items-center">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="result" class="bg-white shadow sm:rounded-lg border border-gray-100 overflow-hidden transition-all duration-300 ease-in-out">
+      <div class="px-4 py-5 sm:px-6 bg-indigo-50 border-b border-indigo-100 flex justify-between items-center">
+        <h3 class="text-lg leading-6 font-medium text-indigo-900">
+          Result
+        </h3>
+      </div>
+      <div class="px-4 py-5 sm:p-6">
+        <div class="mb-6">
+          <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Improved Text</h4>
+          <div class="bg-gray-50 rounded-md p-4 text-gray-800 text-lg whitespace-pre-wrap">
+            {{ result.improvedText }}
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Explanation</h4>
+          <div class="text-gray-600 prose prose-sm">
+            {{ result.explanation }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <select formControlName="tone">
-    <option value="professional">Professional</option>
-    <option value="casual">Casual</option>
-  </select>
-
-  <button type="submit">Improve</button>
-
-</form>
-
-<div *ngIf="loading">Processing...</div>
-
-<div *ngIf="result">
-  <h3>Improved Text</h3>
-  <p>{{ result.improvedText }}</p>
-
-  <h3>Explanation</h3>
-  <p>{{ result.explanation }}</p>
-
-
 </div>
-<button (click)="logout()">Logout</button>
-<!--<button routerLink="/history">View History</button>-->
-<button (click)="goToHistory()">View History</button>
