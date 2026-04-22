@@ -1,8 +1,14 @@
 <form [formGroup]="form" (ngSubmit)="register()">
 
-  <input formControlName="email" placeholder="Email" />
+  <div>
+    <label for="register-email">Email</label>
+    <input id="register-email" formControlName="email" placeholder="Email" />
+  </div>
 
-  <input formControlName="password" type="password" placeholder="Password" />
+  <div>
+    <label for="register-password">Password</label>
+    <input id="register-password" formControlName="password" type="password" placeholder="Password" />
+  </div>
 
   <button type="submit">Register</button>
 

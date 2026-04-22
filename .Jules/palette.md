@@ -1,0 +1,3 @@
+## 2025-02-23 - Angular Forms Accessibility Patterns
+**Learning:** In Angular component forms, explicitly associating `<label>` tags with input fields using matching `for` and `id` attributes, combined with adding `role="alert"` to dynamic validation error messages, is critical for ensuring screen readers accurately announce context and state changes to users.
+**Action:** Always include explicit `for`/`id` labels for all form controls and apply `role="alert"` to any `*ngIf` containers conditionally showing validation errors in Angular templates.
