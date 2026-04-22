@@ -2,16 +2,22 @@
 
 <form [formGroup]="improveForm" (ngSubmit)="improve()">
 
-  <textarea formControlName="text" placeholder="Enter your text"></textarea>
+  <div>
+    <label for="improve-text">Text to improve</label>
+    <textarea id="improve-text" formControlName="text" placeholder="Enter your text"></textarea>
+  </div>
 
-  <div *ngIf="improveForm.get('text')?.touched && improveForm.get('text')?.invalid">
+  <div *ngIf="improveForm.get('text')?.touched && improveForm.get('text')?.invalid" role="alert">
     <small>Text is required (min 3 chars)</small>
   </div>
 
-  <select formControlName="tone">
-    <option value="professional">Professional</option>
-    <option value="casual">Casual</option>
-  </select>
+  <div>
+    <label for="improve-tone">Tone</label>
+    <select id="improve-tone" formControlName="tone">
+      <option value="professional">Professional</option>
+      <option value="casual">Casual</option>
+    </select>
+  </div>
 
   <button type="submit">Improve</button>
 
