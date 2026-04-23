@@ -1,20 +1,24 @@
 <h2>Login</h2>
 
-<div *ngIf="errorMessage" style="color: red; background-color: #ffe6e6; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+<div *ngIf="errorMessage" role="alert" style="color: red; background-color: #ffe6e6; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
   {{ errorMessage }}
 </div>
 
 <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-  <input formControlName="email" placeholder="Email" />
-  <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+  <label for="email" style="display: block; font-weight: bold; margin-bottom: 5px;">Email</label>
+  <input id="email" type="email" formControlName="email" placeholder="Email" style="width: 100%; padding: 8px; margin-bottom: 5px; box-sizing: border-box;" />
+  <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" style="color: red; margin-bottom: 10px;">
     <small>Email is required & must be valid</small>
   </div>
 
-  <input formControlName="password" type="password" placeholder="Password" />
-  <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+  <label for="password" style="display: block; font-weight: bold; margin-bottom: 5px;">Password</label>
+  <input id="password" formControlName="password" type="password" placeholder="Password" style="width: 100%; padding: 8px; margin-bottom: 5px; box-sizing: border-box;" />
+  <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" style="color: red; margin-bottom: 10px;">
     <small>Password is required</small>
   </div>
 
-  <button type="submit">Login</button>
+  <button type="submit" [disabled]="isSubmitting" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    {{ isSubmitting ? 'Logging in...' : 'Login' }}
+  </button>
 </form>
