@@ -1,18 +1,20 @@
 <h2>Login</h2>
 
-<div *ngIf="errorMessage" style="color: red; background-color: #ffe6e6; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+<div *ngIf="errorMessage" role="alert" style="color: red; background-color: #ffe6e6; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
   {{ errorMessage }}
 </div>
 
 <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-  <input formControlName="email" placeholder="Email" />
-  <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+  <label for="email" class="sr-only">Email</label>
+  <input id="email" formControlName="email" placeholder="Email" />
+  <div role="alert" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
     <small>Email is required & must be valid</small>
   </div>
 
-  <input formControlName="password" type="password" placeholder="Password" />
-  <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+  <label for="password" class="sr-only">Password</label>
+  <input id="password" formControlName="password" type="password" placeholder="Password" />
+  <div role="alert" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
     <small>Password is required</small>
   </div>
 
