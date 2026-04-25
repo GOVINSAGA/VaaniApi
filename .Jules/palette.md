@@ -1,0 +1,3 @@
+## 2024-04-25 - Persistent aria-live Wrappers for Angular Conditional Rendering
+**Learning:** In Angular, when conditionally rendering content with `*ngIf`, applying `aria-live` directly to the conditionally rendered element often fails to be announced by screen readers. This happens because the element and its `aria-live` attribute are injected into the DOM at the same time as the content, meaning the screen reader wasn't observing the region beforehand.
+**Action:** Always place `aria-live="polite"` or `aria-live="assertive"` on a persistent wrapper container that is always present in the DOM, and conditionally render the content (like dynamic error messages or loading states) inside that wrapper.
