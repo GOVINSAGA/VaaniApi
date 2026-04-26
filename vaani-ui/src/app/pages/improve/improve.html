@@ -2,18 +2,24 @@
 
 <form [formGroup]="improveForm" (ngSubmit)="improve()">
 
-  <textarea formControlName="text" placeholder="Enter your text"></textarea>
+  <label for="text">Text</label>
+  <textarea id="text" formControlName="text" placeholder="Enter your text"></textarea>
 
-  <div *ngIf="improveForm.get('text')?.touched && improveForm.get('text')?.invalid">
-    <small>Text is required (min 3 chars)</small>
+  <div aria-live="polite">
+    <div *ngIf="improveForm.get('text')?.touched && improveForm.get('text')?.invalid" role="alert">
+      <small>Text is required (min 3 chars)</small>
+    </div>
   </div>
 
-  <select formControlName="tone">
+  <label for="tone">Tone</label>
+  <select id="tone" formControlName="tone">
     <option value="professional">Professional</option>
     <option value="casual">Casual</option>
   </select>
 
-  <button type="submit">Improve</button>
+  <button type="submit" [disabled]="improveForm.invalid || loading">
+    {{ loading ? 'Processing...' : 'Improve' }}
+  </button>
 
 </form>
 
@@ -29,5 +35,4 @@
 
 </div>
 <button (click)="logout()">Logout</button>
-<!--<button routerLink="/history">View History</button>-->
-<button (click)="goToHistory()">View History</button>
+<button routerLink="/history">View History</button>

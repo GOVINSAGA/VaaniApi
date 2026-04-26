@@ -1,5 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { ImproveComponent } from './improve';
 
@@ -10,7 +11,7 @@ describe('Improve', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ImproveComponent],
-      providers: [provideHttpClient()]
+      providers: [provideHttpClient(), provideRouter([])]
     })
     .compileComponents();
 
