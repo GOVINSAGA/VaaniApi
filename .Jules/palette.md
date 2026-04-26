@@ -1,0 +1,3 @@
+## 2026-04-26 - Persistent aria-live Wrappers for Angular Conditional Elements
+**Learning:** In Angular templates, directly applying `aria-live` to conditionally rendered elements (like those using `*ngIf`) can result in screen readers failing to announce the dynamic content changes, as the element isn't in the DOM when the screen reader initially registers live regions.
+**Action:** Always apply `aria-live="polite"` to a persistent wrapper container (e.g., `<div>`) rather than directly on the conditionally rendered elements to ensure screen readers reliably announce the dynamic content changes.
