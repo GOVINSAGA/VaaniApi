@@ -1,0 +1,3 @@
+## 2026-04-27 - Form Accessibility and Dynamic Content
+**Learning:** Found that across the application, form inputs were missing explicit labels, and dynamic content like validation errors and loading states were lacking ARIA attributes to announce changes to screen readers.
+**Action:** Applied a consistent accessibility pattern using `aria-label` attributes on input, textarea, and select elements where visible labels were not present, added `role="alert"` to validation error messages, and wrapped dynamically updating sections in `aria-live="polite"` containers. Ensure this pattern is applied to all new forms and dynamic content areas.
