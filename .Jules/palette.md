@@ -1,0 +1,3 @@
+## 2024-04-28 - Declarative Navigation and Persistent aria-live for Accessibility
+**Learning:** Programmatic navigation `(click)="navigate()"` on buttons often behaves inconsistently with assistive technologies compared to declarative routing. Additionally, conditionally rendering `aria-live` regions (like inside an `*ngIf`) can cause screen readers to miss announcements when the region is first inserted into the DOM.
+**Action:** Use declarative `routerLink` over programmatic navigation for simple routing to ensure consistent accessibility. Apply `aria-live="polite"` to a persistent wrapper element rather than directly on elements that are conditionally rendered.
