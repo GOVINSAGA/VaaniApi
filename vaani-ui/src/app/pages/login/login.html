@@ -6,13 +6,19 @@
 
 <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-  <input formControlName="email" placeholder="Email" />
-  <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+  <div>
+    <label for="login-email">Email <span aria-hidden="true" style="color: red;">*</span></label>
+    <input id="login-email" formControlName="email" placeholder="Email" />
+  </div>
+  <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" role="alert">
     <small>Email is required & must be valid</small>
   </div>
 
-  <input formControlName="password" type="password" placeholder="Password" />
-  <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+  <div>
+    <label for="login-password">Password <span aria-hidden="true" style="color: red;">*</span></label>
+    <input id="login-password" formControlName="password" type="password" placeholder="Password" />
+  </div>
+  <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" role="alert">
     <small>Password is required</small>
   </div>
 
