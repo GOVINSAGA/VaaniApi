@@ -1,20 +1,24 @@
 <h2>Login</h2>
 
-<div *ngIf="errorMessage" style="color: red; background-color: #ffe6e6; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
-  {{ errorMessage }}
+<div aria-live="polite">
+  <div *ngIf="errorMessage" style="color: red; background-color: #ffe6e6; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;" role="alert">
+    {{ errorMessage }}
+  </div>
 </div>
 
 <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-  <input formControlName="email" placeholder="Email" />
-  <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
-    <small>Email is required & must be valid</small>
+  <label for="email" style="display: block; margin-bottom: 5px;">Email</label>
+  <input id="email" formControlName="email" placeholder="Email" style="margin-bottom: 5px;" />
+  <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" role="alert" style="margin-bottom: 10px;">
+    <small style="color: red;">Email is required & must be valid</small>
   </div>
 
-  <input formControlName="password" type="password" placeholder="Password" />
-  <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
-    <small>Password is required</small>
+  <label for="password" style="display: block; margin-bottom: 5px;">Password</label>
+  <input id="password" formControlName="password" type="password" placeholder="Password" style="margin-bottom: 5px;" />
+  <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" role="alert" style="margin-bottom: 10px;">
+    <small style="color: red;">Password is required</small>
   </div>
 
-  <button type="submit">Login</button>
+  <button type="submit" style="margin-top: 10px;">Login</button>
 </form>
