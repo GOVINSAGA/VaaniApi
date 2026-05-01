@@ -1,0 +1,3 @@
+## 2026-05-01 - Form Accessibility: Persistent Aria-Live Wrappers
+**Learning:** In Angular, applying `aria-live="polite"` directly on conditionally rendered elements (like those using `*ngIf`) causes screen readers to miss the announcements. Similarly, dynamically shown error messages need `role="alert"` to be properly conveyed, and form inputs must have explicit `aria-label` attributes or associated `<label>` tags to ensure full accessibility for screen reader users.
+**Action:** Always wrap dynamically rendered error and validation messages in a persistent `<div aria-live="polite">` container. Apply `role="alert"` to the actual message elements inside the wrapper. Ensure all input elements either have an explicitly associated `<label>` or an `aria-label` attribute.
