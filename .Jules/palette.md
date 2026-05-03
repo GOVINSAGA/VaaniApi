@@ -1,0 +1,3 @@
+## 2023-10-27 - Form Accessibility and Dynamic Error Role Alert
+**Learning:** Found that forms in `vaani-ui` lacked explicit `<label>` bindings and dynamic error validation messages lacked the `role="alert"` attribute, potentially causing screen readers to miss or not immediately announce field-specific errors upon form submission.
+**Action:** Implemented explicit `for`/`id` `<label>` pairings for all form inputs across Login and Register pages. Also added `role="alert"` to structural directives (like `*ngIf`) controlling error messaging so validation issues and general backend errors are properly conveyed to assistive technologies. Future form implementations should continue utilizing these explicit labels and alerting roles.
