@@ -1,0 +1,3 @@
+## 2026-05-05 - Persistent aria-live Wrappers for Angular *ngIf
+**Learning:** Applying `aria-live` directly to an element that is conditionally rendered with `*ngIf` in Angular does not reliably trigger screen reader announcements because the element (and its `aria-live` attribute) is inserted into the DOM at the same time as its content. Screen readers need to be aware of the live region before the content changes.
+**Action:** Always wrap conditionally rendered (`*ngIf`) dynamic text, such as error messages or form validation alerts, inside a persistent container element (like a `<div>`) that has the `aria-live` attribute (e.g., `aria-live="polite"`).
