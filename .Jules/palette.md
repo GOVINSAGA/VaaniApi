@@ -1,0 +1,3 @@
+## 2024-05-06 - Dynamic Content and Form Submissions Accessibility
+**Learning:** Screen readers often fail to announce dynamic content reliably when `aria-live` is applied directly to conditionally rendered elements (like those using `*ngIf` in Angular). Additionally, async form submissions without disabled buttons can lead to duplicate submissions and poor user feedback.
+**Action:** Always wrap conditionally rendered dynamic content (like loading spinners or success/error results) in persistent `div` containers with `aria-live="polite"`. For async submissions, always bind the submit button's `disabled` state to the loading variable and provide clear text feedback (e.g., "Processing...").
