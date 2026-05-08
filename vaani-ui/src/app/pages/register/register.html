@@ -4,6 +4,6 @@
 
   <input formControlName="password" type="password" placeholder="Password" />
 
-  <button type="submit">Register</button>
+  <button type="submit" [disabled]="loading">{{ loading ? 'Processing...' : 'Register' }}</button>
 
 </form>
