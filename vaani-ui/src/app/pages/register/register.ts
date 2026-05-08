@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
 
   form!: FormGroup;  // ✅ FIX 1
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -33,9 +34,19 @@ export class RegisterComponent {
       return;
     }
 
-    this.api.register(this.form.value).subscribe(() => {
-      alert('Registered successfully');
-      this.router.navigate(['/login']);
+    this.loading = true;
+
+    this.api.register(this.form.value).subscribe({
+      next: () => {
+        this.loading = false;
+        alert('Registered successfully');
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        this.loading = false;
+        alert('Registration failed');
+        console.error(err);
+      }
     });
   }
 }

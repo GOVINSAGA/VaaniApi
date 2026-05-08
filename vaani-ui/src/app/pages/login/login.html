@@ -16,5 +16,5 @@
     <small>Password is required</small>
   </div>
 
-  <button type="submit">Login</button>
+  <button type="submit" [disabled]="loading">{{ loading ? 'Processing...' : 'Login' }}</button>
 </form>
