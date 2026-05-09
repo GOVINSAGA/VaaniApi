@@ -46,8 +46,4 @@ export class ImproveComponent {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }
-
-  goToHistory() {
-    this.router.navigate(['/history']);
-  }
 }
