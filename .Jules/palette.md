@@ -1,0 +1,3 @@
+## 2024-05-10 - Form Submission UX and Accessibility Pattern
+**Learning:** In async form submissions, users may accidentally trigger duplicate submissions if the button is not disabled during processing. Additionally, screen readers benefit from `role="alert"` for dynamically rendered validation messages.
+**Action:** Always bind the submit button's `disabled` state to a `loading` indicator and provide clear text feedback (e.g., 'Processing...'). Use explicit `<label>` elements with `for`/`id` pairs for form inputs and add `role="alert"` to dynamic error message containers.
