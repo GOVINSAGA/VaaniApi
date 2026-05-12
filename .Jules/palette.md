@@ -1,0 +1,3 @@
+## 2024-05-12 - Improve Form Accessibility and Loading State
+**Learning:** Found an accessibility issue pattern in forms where inputs (`<textarea>`, `<select>`) lacked explicit `<label>` tags or `aria-label`s. Also, async operations showed a loading state but left the submit button enabled, which can cause double-submissions and poor UX.
+**Action:** Always add `aria-label` to form controls that don't have a visual `<label>`. Bind the submit button's `disabled` state to the `loading` variable and update the button text to show the processing state inline, rather than rendering a separate loading indicator. Use `role="alert"` for validation error messages so they are announced by screen readers.
