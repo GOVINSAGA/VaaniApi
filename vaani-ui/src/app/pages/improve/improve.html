@@ -2,22 +2,20 @@
 
 <form [formGroup]="improveForm" (ngSubmit)="improve()">
 
-  <textarea formControlName="text" placeholder="Enter your text"></textarea>
+  <textarea formControlName="text" placeholder="Enter your text" aria-label="Text to improve"></textarea>
 
-  <div *ngIf="improveForm.get('text')?.touched && improveForm.get('text')?.invalid">
+  <div *ngIf="improveForm.get('text')?.touched && improveForm.get('text')?.invalid" role="alert">
     <small>Text is required (min 3 chars)</small>
   </div>
 
-  <select formControlName="tone">
+  <select formControlName="tone" aria-label="Select tone">
     <option value="professional">Professional</option>
     <option value="casual">Casual</option>
   </select>
 
-  <button type="submit">Improve</button>
+  <button type="submit" [disabled]="loading">{{ loading ? 'Processing...' : 'Improve' }}</button>
 
 </form>
-
-<div *ngIf="loading">Processing...</div>
 
 <div *ngIf="result">
   <h3>Improved Text</h3>
