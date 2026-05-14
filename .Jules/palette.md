@@ -1,0 +1,3 @@
+## 2026-05-14 - Improve Form Accessibility and UX Feedback
+**Learning:** In the `improve.html` component, standard inputs lacked explicit `<label>` bindings and async submit interactions didn't disable the submit button, allowing duplicate submissions. Separating the "Processing..." state into a different element created disjointed feedback.
+**Action:** Always wrap standard text inputs and selects with proper `<label for="id">` elements. Bind the `[disabled]` state of submit buttons to both the `loading` variable and `form.invalid` state, and change the button text to clearly reflect the "Processing..." state directly within the button rather than an adjacent element. Added `role="alert"` for form validation errors to ensure screen readers announce them properly.
