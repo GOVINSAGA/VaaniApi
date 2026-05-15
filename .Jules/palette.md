@@ -1,0 +1,3 @@
+## 2024-05-15 - Improve Form Accessibility and Loading States
+**Learning:** In Angular templates, dynamically appearing elements (like async API results) might not be announced by screen readers if `aria-live` is placed directly on the conditionally rendered element (e.g., one with `*ngIf`). The disabled state of submit buttons in async forms needs to be explicitly bound to both the loading state and the form's validity, ideally updating the button text for better inline feedback rather than showing a separate loading indicator.
+**Action:** Always wrap dynamic results sections in a persistent container with `aria-live="polite"`. Always bind form submit buttons using `[disabled]="loading || form.invalid"` and update the button text to show processing state.
