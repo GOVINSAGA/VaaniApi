@@ -1,9 +1,17 @@
 <form [formGroup]="form" (ngSubmit)="register()">
 
-  <input formControlName="email" placeholder="Email" />
+  <input formControlName="email" placeholder="Email" aria-label="Email" />
+  <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" role="alert">
+    <small>Email is required & must be valid</small>
+  </div>
 
-  <input formControlName="password" type="password" placeholder="Password" />
+  <input formControlName="password" type="password" placeholder="Password" aria-label="Password" />
+  <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" role="alert">
+    <small>Password is required</small>
+  </div>
 
-  <button type="submit">Register</button>
+  <button type="submit" [disabled]="form.invalid || loading">
+    {{ loading ? 'Processing...' : 'Register' }}
+  </button>
 
 </form>
