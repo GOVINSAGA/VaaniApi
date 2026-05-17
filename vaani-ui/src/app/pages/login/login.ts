@@ -14,6 +14,7 @@ export class LoginComponent {
 
   loginForm!: FormGroup;
   errorMessage: string = '';  // ✅ FIX 1: Added error message variable
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -34,16 +35,19 @@ export class LoginComponent {
 
     // Clear previous errors when they click login again
     this.errorMessage = '';
+    this.loading = true;
 
     // ✅ FIX 2: Handle both 'next' (success) and 'error' (failure)
     this.api.login(this.loginForm.value).subscribe({
       next: (res: any) => {
+        this.loading = false;
         localStorage.setItem('token', res.token);
 
         // ✅ FIX 3: Add { replaceUrl: true } to fix the Back Button trap
         this.router.navigate(['/improve'], { replaceUrl: true });
       },
       error: (err) => {
+        this.loading = false;
         // ✅ FIX 4: Catch the 401 error and show it to the user
         if (err.status === 401) {
           this.errorMessage = 'Incorrect email or password. Please try again.';
