@@ -13,11 +13,11 @@
     <option value="casual">Casual</option>
   </select>
 
-  <button type="submit">Improve</button>
+  <button type="submit" [disabled]="loading || improveForm.invalid">
+    {{ loading ? 'Processing...' : 'Improve' }}
+  </button>
 
 </form>
-
-<div *ngIf="loading">Processing...</div>
 
 <div *ngIf="result">
   <h3>Improved Text</h3>
