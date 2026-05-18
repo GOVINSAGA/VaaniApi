@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
-import { Router, RouterModule } from '@angular/router'; 
+import { Router, RouterModule, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, RouterLink],
   templateUrl: './history.html'
 })
 export class HistoryComponent implements OnInit {
@@ -36,9 +36,5 @@ export class HistoryComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
-  }
-
-  goBack() {
-    this.router.navigate(['/improve']);
   }
 }
